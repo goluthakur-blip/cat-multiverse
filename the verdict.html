@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Golu's Cat Multiverse</title>
+  <style>
+    :root {
+      --bg-light: repeating-linear-gradient(-45deg, #ffe0f8, #ffe6f7 20px, #ffdcf6 20px, #ffe8f9 40px);
+      --bg-dark: #1a1a1a;
+      --text-light: #000;
+      --text-dark: #fff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      transition: background 0.5s, color 0.5s;
+      cursor: url('https://cdn-icons-png.flaticon.com/32/616/616408.png'), auto;
+      overflow-x: hidden;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #ffe0f8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      z-index: 9999;
+    }
+
+    h1 {
+      text-align: center;
+      color: #aa0077;
+      font-size: 2.5em;
+      margin-top: 40px;
+    }
+
+    .content {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .cat-photos {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .cat-photos img {
+      width: 150px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    #typed-text {
+      flex: 1;
+      max-width: 600px;
+      font-size: 1.2em;
+      line-height: 1.6em;
+      padding: 10px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 10px;
+      visibility: visible;
+    }
+
+    .trail {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: rgba(255, 192, 203, 0.5);
+      animation: fade 1s forwards;
+      z-index: 9999;
+    }
+
+    @keyframes fade {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(2); }
+    }
+
+    .toggle-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 999;
+    }
+
+    .toggle-container button, .secret-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      margin: 5px;
+      background-color: #ffb3dd;
+      box-shadow: 0 0 5px #00000044;
+      transition: background 0.3s;
+    }
+
+    .toggle-container button:hover,
+    .secret-button:hover {
+      background-color: #ff8ec8;
+    }
+
+    .secret-button {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+    }
+
+    .ghost-cat {
+      position: fixed;
+      bottom: -100px;
+      left: -200px;
+      font-size: 80px;
+      opacity: 0;
+      animation: ghost-float 10s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @keyframes ghost-float {
+      0% { transform: translateX(-200px); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateX(100vw); opacity: 1; }
+      90% { opacity: 0; }
+      100% { transform: translateX(110vw); opacity: 0; }
+    }
+
+    .bottom {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .bottom img {
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="loader">😺 Meow Meow Loading...</div>
+
+<div class="toggle-container">
+  <button onclick="toggleMode()">🌗 Toggle Mode</button>
+  <button onclick="toggleMusic()">🎵 Music</button>
+</div>
+
+<button class="secret-button" onclick="alert('😼 Billu Mode Activated!')">🐱</button>
+<div class="ghost-cat">👻🐱</div>
+
+<h1>GOLU's Meow Multiverse 🐾</h1>
+
+<div class="content">
+  <div class="cat-photos">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaNFq8hniyBpKWMLVVc7T0p-NiwE6VnfTWPA&s" onclick="playMeow()">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpfyhBxm-XmP04EPkrLrpWdxUicCUHuGjrlw&s" onclick="playMeow()">
+  </div>
+
+  <div id="typed-text"></div>
+
+  </div> <!-- end of .content -->
+
+<!-- Add here -->
+<div class="bottom">
+  <a href="gpt.html" class="cat photo">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScsCuW1_wBTplvXi4R6m-8axw_XJQsUV-T1A&s" alt="click to chat with cat" width="100">
+  </a>
+  <h3>💬 Talk to Billu the Cat! by clicking on the lion</h3>
+</div>
+
+  
+
+<audio id="meow-sound">
+  <source src="https://www.fesliyanstudios.com/play-mp3/6653" type="audio/mpeg">
+</audio>
+<audio id="bg-music" loop>
+  <source src="https://www.fesliyanstudios.com/play-mp3/6667" type="audio/mpeg">
+</audio>
+
+<script>
+  const fullText = `😺 Hi, my name is Golu 🧒, and I’m a true cat lover at heart! 🐾💖 Ever since I was a kid 👶, I’ve been obsessed with cats 🐱, thanks to iconic shows 📺 like *Oggy and the Cockroaches* 🐈‍⬛ and *Doraemon* 🤖🐱. Oggy, the lazy yet lovable blue cat 💙, and Doraemon, the futuristic robotic cat from the 22nd century 🚀, shaped my childhood 🌈. Their adventures made me fall in love 💘 with every little "meow" 🗣️ and whisker twitch 😽.
+
+I even gave myself the nickname 🐯 "Billu Thakur" — the ultimate cat boss! 👑 I can speak fluent cat language too: "meow meow meowwwww" 🗣️🐱 all day long!
+
+I adore their playful nature 🧶, soft fur 🐾, and those mysterious eyes 👀 that seem to know all the secrets of the universe 🌌.
+
+One day, I dream 💭 of having a cozy home 🏡 filled with cats of all kinds 🐈🐈‍⬛🐱 — because life is just better with a little more purring 💗 and a lot more paws! 🐾😸
+
+I love to play with yarn 🧵, chase laser dots 🔴, nap in sunny spots 🌞, and eat delicious tuna 🐟!`;
+
+  let i = 0;
+  const speed = 20;
+  const textEl = document.getElementById("typed-text");
+
+  function typeWriter() {
+    if (i < fullText.length) {
+      textEl.innerHTML += fullText.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  function toggleMode() {
+    document.body.classList.toggle("dark-mode");
+  }
+
+  function playMeow() {
+    const audio = document.getElementById("meow-sound");
+    audio.currentTime = 0;
+    audio.play();
+  }
+
+  function toggleMusic() {
+    const music = document.getElementById("bg-music");
+    if (music.paused) music.play(); else music.pause();
+  }
+
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      typeWriter();
+    }, 4000);
+  };
+
+  document.addEventListener("mousemove", (e) => {
+    const sparkle = document.createElement("div");
+    sparkle.className = "trail";
+    sparkle.style.left = e.pageX + "px";
+    sparkle.style.top = e.pageY + "px";
+    document.body.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 1000);
+  });
+</script>
+</body>
+</html>
